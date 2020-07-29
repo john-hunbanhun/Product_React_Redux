@@ -1,5 +1,12 @@
 import { signInAction } from "./action";
 import { push } from "connected-react-router";
+import {
+  auth,
+  db,
+  storage,
+  functions,
+  FirebaseTimestamp,
+} from "../../firebase/index";
 
 export const signIn = () => {
   return async (dispatch, getState) => {
@@ -38,9 +45,35 @@ export const signUp = (username, email, password, confirmpassword) => {
       alert("必須項目が未入力です");
       return false; //signUp関数自体が何もしないままそのまま終了って意味
     }
-    if(password!==confirmpassword){
+    if (password !== confirmpassword) {
       alert("パスワードが一致していません。");
       return false;
     }
+
+    return auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        const user = result.user;
+        if (user) {
+          const uid = user.uid;
+          const timestamp = FirebaseTimestamp.now();
+
+          const userInitialData = {
+            created_at: timestamp,
+            email: email,
+            role: "customer",
+            uid: uid,
+            updated_at: timestamp,
+            username: username,
+          };
+
+          db.collection("users")
+            .doc(uid)
+            .set(userInitialData)
+            .then(() => {
+              dispatch(push("/"));
+            });
+        }
+      });
   };
 };
