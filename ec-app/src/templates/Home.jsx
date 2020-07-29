@@ -15,6 +15,7 @@ const Home = () => {
       <p>{uid}</p>
       <p>{username}</p>
       <button onClick={() => dispatch(push("/login"))}>ログイン画面</button>
+      <button onClick={()=>dispatch(push("/signup"))}>アカウント登録</button>
     </div>
   );
 };
