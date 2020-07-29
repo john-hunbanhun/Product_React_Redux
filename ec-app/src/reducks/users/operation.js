@@ -25,3 +25,22 @@ export const signIn = () => {
     }
   };
 };
+
+export const signUp = (username, email, password, confirmpassword) => {
+  return async (dispatch) => {
+    //Validation
+    if (
+      username === "" ||
+      email === "" ||
+      password === "" ||
+      confirmpassword === ""
+    ) {
+      alert("必須項目が未入力です");
+      return false; //signUp関数自体が何もしないままそのまま終了って意味
+    }
+    if(password!==confirmpassword){
+      alert("パスワードが一致していません。");
+      return false;
+    }
+  };
+};

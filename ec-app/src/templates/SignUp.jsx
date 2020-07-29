@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { TextInput, PrimaryButton } from "../component/UIkit/index";
+import { signUp } from "../reducks/users/operation";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -7,6 +9,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const dispatch = useDispatch();
   //useCallback関数でメモ化(パフォーマンスを良くする)
   const inputUsername = useCallback(
     (event) => {
@@ -78,10 +81,12 @@ const SignUp = () => {
         onChange={inputConfirmPassword}
       />
       <div className="center">
-      <div className="module-spacer--medium" />
+        <div className="module-spacer--medium" />
         <PrimaryButton
           label={"アカウントを登録する"}
-          onClick={() => console.log("Push")}
+          onClick={() =>
+            dispatch(signUp(username, email, password, confirmPassword))
+          }
         />
       </div>
     </div>
