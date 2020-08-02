@@ -107,3 +107,11 @@ export const signUp = (username, email, password, confirmpassword) => {
       });
   };
 };
+
+export const signOut = () => {
+  return async(dispatch)=>{
+    auth.signOut().then(()=>{
+      dispatch(push("/signin"))
+    })
+  }
+};
