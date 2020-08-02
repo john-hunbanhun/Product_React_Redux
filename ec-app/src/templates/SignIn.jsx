@@ -24,7 +24,7 @@ const SignIn = () => {
 
   return (
     <div className="c-section-container">
-      <h2 className="u-text_headline u-text-center">アカウント登録</h2>
+      <h2 className="u-text_headline u-text-center">サインイン</h2>
       <div className="module-spacer--medium" />
       <TextInput
         fullWidth={true}
