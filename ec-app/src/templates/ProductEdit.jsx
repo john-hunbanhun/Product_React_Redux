@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { TextInput } from "../component/UIkit";
+import { TextInput, SelectBox } from "../component/UIkit";
 
 const ProductEdit = () => {
   const [name, setName] = useState("");
@@ -29,6 +29,18 @@ const ProductEdit = () => {
     [setPrice]
   );
 
+  const categories = [
+    { id: "tops", name: "トップス" },
+    { id: "shirts", name: "シャツ" },
+    { id: "pants", name: "パンツ" },
+  ];
+
+  const genders = [
+    { id: "all", name: "すべて" },
+    { id: "man", name: "メンズ" },
+    { id: "woman", name: "レディース" },
+  ];
+
   return (
     <section>
       <h2 className="u-text__headline u-text-center">商品の登録・編集</h2>
@@ -52,6 +64,20 @@ const ProductEdit = () => {
           rows={5}
           value={description}
           type={"text"}
+        />
+        <SelectBox
+          label={"カテゴリー"}
+          required={true}
+          options={categories}
+          select={setCategory}
+          value={category}
+        />
+        <SelectBox
+          label={"性別"}
+          required={true}
+          options={genders}
+          select={setGender}
+          value={gender}
         />
         <TextInput
           fullWidth={true}
