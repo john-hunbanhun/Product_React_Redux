@@ -17,7 +17,7 @@ const Home = () => {
       <p>{username}</p>
       <button onClick={() => dispatch(signOut())}>ログアウト</button>
       <button onClick={() => dispatch(push("/signup"))}>アカウント登録</button>
-      <button onClick={() => dispatch(push("/productedit"))}>商品編集ページ</button>
+      <button onClick={() => dispatch(push("/product/edit"))}>商品編集ページ</button>
     </div>
   );
 };
