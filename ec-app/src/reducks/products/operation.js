@@ -4,6 +4,7 @@ import { push } from "connected-react-router";
 const productsRef = db.collection("products");
 
 export const saveProduct = (
+  id,
   name,
   description,
   category,
@@ -15,6 +16,7 @@ export const saveProduct = (
     const timestamp = FirebaseTimestamp.now();
 
     const data = {
+      id: id,
       category: category,
       description: description,
       gender: gender,
@@ -23,15 +25,15 @@ export const saveProduct = (
       image: image,
       updated_at: timestamp,
     };
-
-    const ref = productsRef.doc();
-    const id = ref.id;
-    data.id = id;
-    data.created_at = timestamp;
-
+    if (id === "") {
+      const ref = productsRef.doc();
+      const id = ref.id;
+      data.id = id;
+      data.created_at = timestamp;
+    }
     return productsRef
       .doc(id)
-      .set(data)
+      .set(data, { merge: true })
       .then(() => {
         dispatch(push("/"));
       })
