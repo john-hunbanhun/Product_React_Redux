@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { TextInput, SelectBox, PrimaryButton } from "../component/UIkit";
 import { useDispatch } from "react-redux";
 import { saveProduct } from "../reducks/products/operation";
-import { ImageArea } from "../component/Products";
+import { ImageArea, SetSizeArea } from "../component/Products";
 import { db } from "../firebase/index";
 
 const ProductEdit = () => {
@@ -21,6 +21,7 @@ const ProductEdit = () => {
   const [gender, setGender] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState([]);
+  const [sizes, setSizes] = useState([]);
 
   const inputName = useCallback(
     (event) => {
@@ -122,7 +123,9 @@ const ProductEdit = () => {
           value={price}
           type={"number"}
         />
-        <div className="module-spacer--medium" />
+        <div className="module-spacer--small" />
+        <SetSizeArea sizes={sizes} />
+        <div className="module-spacer--small" />
         <div className="center">
           <PrimaryButton
             label={"商品情報を保存"}
