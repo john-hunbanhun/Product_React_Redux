@@ -30,6 +30,27 @@ const SetSizeArea = (props) => {
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(0);
 
+  const addSize = (index, size, quantity) => {
+    if (size === "" || quantity === "") {
+      window.alert("サイズ・数量を入力してください");
+      return false;
+    } else {
+      props.setSizes((prevState) => [
+        ...prevState,
+        { size: size, quantity: quantity },
+      ]);
+      setIndex(index + 1);
+      setSize("");
+      setQuantity(0);
+    }
+  };
+
+  const editSize = (index, size, quantity) => {
+    setIndex(index);
+    setSize(size);
+    setQuantity(quantity);
+  };
+
   const inputSize = useCallback(
     (event) => {
       setSize(event.target.value);
@@ -57,14 +78,16 @@ const SetSizeArea = (props) => {
           </TableHead>
           <TableBody>
             {props.sizes.length > 0 &&
-              props.sizes.map((item, index) => {
+              props.sizes.map((item, i) => {
                 return (
                   <TableRow key={item.size}>
                     <TableCell>{item.size}</TableCell>
                     <TableCell>{item.quantity}</TableCell>
                     <TableCell>
                       <IconButton className={classes.iconCell}>
-                        <EditIcon />
+                        <EditIcon
+                          onClick={() => editSize(i, item.size, item.quantity)}
+                        />
                       </IconButton>
                     </TableCell>
                     <TableCell>
@@ -99,7 +122,10 @@ const SetSizeArea = (props) => {
             type={"number"}
           />
         </div>
-        <IconButton className={classes.checkIcon}>
+        <IconButton
+          className={classes.checkIcon}
+          onClick={() => addSize(index, size, quantity)}
+        >
           <CheckCircleIcon />
         </IconButton>
       </TableContainer>
