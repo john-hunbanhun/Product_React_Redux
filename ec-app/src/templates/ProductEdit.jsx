@@ -70,6 +70,7 @@ const ProductEdit = () => {
           setCategory(data.category);
           setPrice(data.price);
           setDescription(data.description);
+          setSizes(data.sizes);
         });
     }
   }, [id]);
@@ -138,7 +139,8 @@ const ProductEdit = () => {
                   category,
                   gender,
                   price,
-                  image
+                  image,
+                  sizes
                 )
               )
             }
