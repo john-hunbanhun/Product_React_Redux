@@ -20,7 +20,15 @@ const ProductList = () => {
       <div className="p-grid__row">
         {products.length > 0 &&
           products.map((product) => {
-            return <ProductCard key={product.id} />;
+            return (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                image={product.image}
+                price={product.price}
+              />
+            );
           })}
       </div>
     </section>
