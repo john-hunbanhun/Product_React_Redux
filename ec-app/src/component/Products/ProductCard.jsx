@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -11,7 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { useState } from "react";
+import { deleteProduct } from "../../reducks/products/operation";
 
 const useStyles = makeStyles((thema) => ({
   root: {
@@ -87,11 +87,18 @@ const ProductCard = (props) => {
           <MenuItem
             onClick={() => {
               dispatch(push("/product/edit/" + props.id));
+              handleClose();
             }}
           >
             編集する
           </MenuItem>
-          <MenuItem>削除する</MenuItem>
+          <MenuItem
+            onClick={() => {
+              dispatch(deleteProduct(props.id));
+            }}
+          >
+            削除する
+          </MenuItem>
         </Menu>
       </CardContent>
     </Card>
