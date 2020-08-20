@@ -3,6 +3,8 @@ import { ProductCard } from "../component/Products/index";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../reducks/products/operation";
 import { getProducts } from "../reducks/products/selector";
+import { push } from "connected-react-router";
+import { PrimaryButton } from "../component/UIkit/index";
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -31,6 +33,12 @@ const ProductList = () => {
             );
           })}
       </div>
+      <PrimaryButton
+        label={"商品登録ページ"}
+        onClick={() => {
+          dispatch(push("/product/edit"));
+        }}
+      />
     </section>
   );
 };
