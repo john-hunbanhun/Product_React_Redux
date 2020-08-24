@@ -11,7 +11,7 @@ export const deleteProduct = (id) => {
       .delete()
       .then(() => {
         const prevProducts = getState().products.list;
-        const nextProducts = prevProducts.filter((product) => product.id != id);
+        const nextProducts = prevProducts.filter((product) => product.id !== id);
         dispatch(deleteProductAction(nextProducts));
       });
   };

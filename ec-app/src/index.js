@@ -8,7 +8,9 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 const history = History.createBrowserHistory();
-export const store = createStore(history);
+export const store = createStore(
+  history,
+);
 
 ReactDOM.render(
   <Provider store={store}>
