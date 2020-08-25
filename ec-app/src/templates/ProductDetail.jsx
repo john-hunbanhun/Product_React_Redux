@@ -3,6 +3,7 @@ import { db } from "../firebase";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/styles";
 import HTMLReactParser from "html-react-parser";
+import { ImageSwiper } from "../component/Products/index";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -67,7 +68,9 @@ const ProductDetail = () => {
     <section className="c-section-wrapin">
       {product && (
         <div className="p-grid__row">
-          <div className={classes.sliderBox}></div>
+          <div className={classes.sliderBox}>
+            <ImageSwiper images={product.image} />
+          </div>
           <div className={classes.detail}>
             <h2 className="u-text__headline">{product.name}</h2>
             <p className={classes.price}>{product.price.toLocaleString()}</p>
