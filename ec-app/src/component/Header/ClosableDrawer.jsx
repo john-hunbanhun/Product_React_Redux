@@ -68,8 +68,6 @@ const ClosableDrawer = (props) => {
               value={keyword}
               type={"text"}
             />
-            </div>
-            <div>
             <IconButton>
               <SearchIcon />
             </IconButton>
