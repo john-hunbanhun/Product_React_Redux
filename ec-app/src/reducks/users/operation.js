@@ -57,28 +57,33 @@ export const signIn = (email, password) => {
       return false;
     }
 
-    auth.signInWithEmailAndPassword(email, password).then((result) => {
-      const user = result.user;
-      if (user) {
-        const uid = user.uid;
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        const user = result.user;
+        if (user) {
+          const uid = user.uid;
 
-        db.collection("users")
-          .doc(uid)
-          .get()
-          .then((snapshot) => {
-            const data = snapshot.data();
-            dispatch(
-              signInAction({
-                isSignedIn: true,
-                role: data.role,
-                uid: uid,
-                username: data.username,
-              })
-            );
-            dispatch(push("/"));
-          });
-      }
-    });
+          db.collection("users")
+            .doc(uid)
+            .get()
+            .then((snapshot) => {
+              const data = snapshot.data();
+              dispatch(
+                signInAction({
+                  isSignedIn: true,
+                  role: data.role,
+                  uid: uid,
+                  username: data.username,
+                })
+              );
+              dispatch(push("/"));
+            });
+        }
+      })
+      .catch(() => {
+        alert("入力事項に間違いがあります。正しい情報を入力してください。");
+      });
   };
 };
 
