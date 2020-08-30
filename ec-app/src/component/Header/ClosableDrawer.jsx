@@ -120,7 +120,7 @@ const ClosableDrawer = (props) => {
                   </ListItem>
                 );
               })}
-              <ListItem button key="logout" onClick={(e)=>dispatch(signOut())}>
+              <ListItem button key="logout" onClick={()=>dispatch(signOut())}>
                 <ListItemIcon>
                   <ExitToAppIcon />
                 </ListItemIcon>
