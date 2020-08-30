@@ -67,7 +67,6 @@ export const signIn = (email, password) => {
           .get()
           .then((snapshot) => {
             const data = snapshot.data();
-
             dispatch(
               signInAction({
                 isSignedIn: true,
