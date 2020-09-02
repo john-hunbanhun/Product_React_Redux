@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 const CartListItem = (props) => {
   const classes = useStyles();
   const selector = useSelector((state) => state);
-  const uid = getUserId(selector);
+
 
   const image = props.product.images[0].path;
   const price = props.product.price.toLocaleString();
@@ -36,6 +36,7 @@ const CartListItem = (props) => {
   const size = props.product.size;
 
   const removeProductFromCart = (id) => {
+    const uid = getUserId(selector);
     return db.collection("users").doc(uid).collection("cart").doc(id).delete();
   };
 

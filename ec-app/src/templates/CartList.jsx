@@ -33,7 +33,7 @@ const CartList = () => {
     <section className="c-section-wrapin">
       <h2 className="u-text__headline">ショッピングカート</h2>
       <List className={classes.root}>
-        {productInCart.length > 0 &&
+        {productInCart.length >0 &&
           productInCart.map((product) => (
             <CartListItem key={product.cartId} product={product} />
           ))}
