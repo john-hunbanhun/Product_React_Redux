@@ -56,7 +56,7 @@ const ProductCard = (props) => {
     setAnchorEl(null);
   };
 
-  const image = props.image.length > 0 ? props.image : [{ path: NoImage }];
+  const image = props.images.length > 0 ? props.images : [{ path: NoImage }];
   const price = props.price.toLocaleString();
 
   return (

@@ -74,7 +74,7 @@ const ProductDetail = () => {
           added_at: timestamp,
           description: product.description,
           gender: product.gender,
-          images: product.image,
+          images: product.images,
           name: product.name,
           price: product.price,
           productId: product.id,
@@ -91,7 +91,7 @@ const ProductDetail = () => {
       {product && (
         <div className="p-grid__row">
           <div className={classes.sliderBox}>
-            <ImageSwiper images={product.image} />
+            <ImageSwiper images={product.images} />
           </div>
           <div className={classes.detail}>
             <h2 className="u-text__headline">{product.name}</h2>

@@ -53,7 +53,7 @@ export const saveProduct = (
       gender: gender,
       name: name,
       price: parseInt(price, 10),
-      image: image,
+      images: image,
       sizes: sizes,
       updated_at: timestamp,
     };
