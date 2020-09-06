@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/styles";
 import { CartListItem } from "../component/Products/index";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import { PrimaryButton } from "../component/UIkit/index";
+import { PrimaryButton, TextDetail } from "../component/UIkit/index";
 
 const useStyles = makeStyles((theme) => ({
   detailBox: {
@@ -34,9 +34,43 @@ const OrderConfirm = () => {
   const selector = useSelector((state) => state);
   const productInCart = getProductInCart(selector);
 
+  const subtotal = useMemo(() => {
+    return productInCart.reduce((sum, product) => (sum += product.price), 0);
+  }, [productInCart]);
+
+  const shippingFee = subtotal >= 10000 ? 0 : 210;
+  const tax = (subtotal + shippingFee) * 0.1;
+  const total = subtotal + shippingFee + tax;
+
   return (
     <section className="c-section-wrapin">
       <h2 className="u-text__headline">注文の確認</h2>
+      <div className="p-grid__row">
+        <div className={classes.detailBox}>
+          <List>
+            {productInCart.length > 0 &&
+              productInCart.map((product) => (
+                <CartListItem key={product.cartId} product={product} />
+              ))}
+          </List>
+        </div>
+        <div className={classes.orderBox}>
+          <TextDetail
+            label={"商品合計"}
+            value={"￥" + subtotal.toLocaleString()}
+          />
+          <TextDetail
+            label={"送料"}
+            value={"￥" + shippingFee.toLocaleString()}
+          />
+          <TextDetail label={"消費税"} value={"￥" + tax} />
+          <Divider />
+          <TextDetail
+            label={"合計(税込み)"}
+            value={"￥" + total.toLocaleString()}
+          />
+        </div>
+      </div>
     </section>
   );
 };
