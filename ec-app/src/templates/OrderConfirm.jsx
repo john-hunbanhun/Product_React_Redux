@@ -39,7 +39,7 @@ const OrderConfirm = () => {
   }, [productInCart]);
 
   const shippingFee = subtotal >= 10000 ? 0 : 210;
-  const tax = (subtotal + shippingFee) * 0.1;
+  const tax = subtotal  * 0.1;
   const total = subtotal + shippingFee + tax;
 
   return (
