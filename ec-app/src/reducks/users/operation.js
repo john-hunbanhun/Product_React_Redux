@@ -2,6 +2,7 @@ import {
   signInAction,
   signOutAction,
   fetchProductsInCartAction,
+  fetchOrdersHistoryAction,
 } from "./action";
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
@@ -13,6 +14,25 @@ export const addProductToCart = (addedProduct) => {
     addedProduct["cartId"] = cartRef.id;
     await cartRef.set(addedProduct);
     dispatch(push("/cart"));
+  };
+};
+
+export const fetchOrderHistory = () => {
+  return async (dispatch, getState) => {
+    const uid = getState().users.uid;
+    const list = [];
+
+    db.collection("users")
+      .doc(uid)
+      .collection("orders")
+      .orderBy("updated_at", "desc")
+      .then((snapshot) => {
+        snapshot.forEach((snapshot) => {
+          const data = snapshot.data();
+          list.push(data);
+        });
+        dispatch(fetchOrdersHistoryAction(list));
+      });
   };
 };
 
