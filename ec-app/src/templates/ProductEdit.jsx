@@ -65,7 +65,7 @@ const ProductEdit = () => {
           const data = snapshot.data();
           console.log(data);
           setName(data.name);
-          setImage(data.image);
+          setImage(data.images);
           setGender(data.gender);
           setCategory(data.category);
           setPrice(data.price);
