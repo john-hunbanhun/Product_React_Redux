@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/styles";
 import { getOrdersHistory } from "../reducks/users/selector";
+import { fetchOrderHistory } from "../reducks/users/operation";
 
 const useStyles = makeStyles((theme) => ({
   orderList: {
@@ -23,6 +24,10 @@ const OrderHistory = () => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state);
   const orders = getOrdersHistory(selector);
+
+  useEffect(() => {
+    dispatch(fetchOrderHistory());
+  }, []);
 
   return (
     <section className="c-section-wrapin">

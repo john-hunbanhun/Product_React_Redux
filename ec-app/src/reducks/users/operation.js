@@ -26,6 +26,7 @@ export const fetchOrderHistory = () => {
       .doc(uid)
       .collection("orders")
       .orderBy("updated_at", "desc")
+      .get()
       .then((snapshot) => {
         snapshot.forEach((snapshot) => {
           const data = snapshot.data();
