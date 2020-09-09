@@ -65,14 +65,14 @@ const ClosableDrawer = (props) => {
     {
       func: selectMenu,
       label: "メンズ",
-      id: "male",
-      value: "/?gender=male",
+      id: "man",
+      value: "/?gender=man",
     },
     {
       func: selectMenu,
       label: "レディース",
-      id: "female",
-      value: "/?gender=female",
+      id: "woman",
+      value: "/?gender=woman",
     },
   ]);
 
